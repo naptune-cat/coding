@@ -1,0 +1,34 @@
+// 
+#include <iostream>
+#include<string>
+using namespace std;
+
+
+
+char maxOccurance(string s){
+    int arr[26]={0};
+    int num=0;
+    for(int i=0; i<s.length();i++){
+        char ch=s[i];
+         num = ch-'a';
+         arr[num]++;
+    }
+    int maxi = -1,ans=0;
+    for(int i=0;i<26;i++){
+        if(maxi<arr[i]){
+            ans=i;
+            maxi= arr[i];
+        }
+    }
+    char fAns= 'a' + ans;
+    return fAns;
+}
+
+int main() {
+    // Write C++ code here
+    string s;
+    cin>>s;
+    cout<<maxOccurance(s);
+
+    return 0;
+}
