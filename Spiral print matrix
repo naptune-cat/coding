@@ -40,3 +40,41 @@ vector<int> spiralPathMatrix(vector<vector<int>> matrix, int n, int m)
     }
     return ans;
 }
+
+
+
+
+
+//solve by own
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void Spriralprint(vector<vector<int>> m,int row,int col){
+    int total=row*col;
+    int StartRow=0,startCol=0,endRow=row-1,endCol=col-1;
+    int count =0;
+    while(count < total){
+        for(int i=startCol;i<=endCol;i++){
+            
+        }
+    }
+}
+int main() {
+    vector<vector<int>> matrix;
+    int row,col;
+    cin>>row>>col;
+    for(int i=0;i<row;i++){
+    vector<int>temp;
+    for(int j=0;j<col;j++){
+    int val;
+    cin>>val;
+    temp.push_back(val);
+    }
+    matrix.push_back(temp);
+    }
+    
+    Spiralprint(matrix,row,col);
+        return 0;
+}
