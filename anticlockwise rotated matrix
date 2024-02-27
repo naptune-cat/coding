@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+vector<vector<int>> rotateMatrix(vector<vector<int>> &matrix)
+{
+    // Write your code here. 
+    int row= matrix.size();
+    int col= matrix[0].size();
+    vector<vector<int>> ans(col,vector<int> (row));
+  
+    for(int i=col;i<row;i++){
+        for(int j=0 ; j<col ; j++ ){
+            ans[row-1-j][i]=matrix[i][j];
+        }
+    }
+    return ans;
+}
