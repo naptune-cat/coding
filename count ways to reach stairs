@@ -1,0 +1,16 @@
+#include <bits/stdc++.h> 
+int countDistinctWays(int nStairs) {
+    //  ways to reach end stair is either from n-1th stair
+    //or n-2th stair
+    //so f(n)=f(n-1)+f(n-2)
+    int ans=0;
+    int m= 1000000007;
+    if(nStairs<0){
+        return 0;
+    }
+    if(nStairs==0){
+        return 1;
+    }
+    ans=countDistinctWays(nStairs-1)+countDistinctWays(nStairs-2);
+    return ans%m;
+}
