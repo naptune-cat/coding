@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int sumRecursion(int arr[],int size){
+    int sum=0;
+    //base case
+    if(size==0){
+        return arr[size];
+    } 
+    //starting from end index-->size
+    //going till size=0(0th index)
+    sum+=arr[size]+sumRecursion(arr,size-1);
+    return sum;
+    
+}
+int main() {
+    int arr[10]={1,22,3,55,7,83,8,9,7,4};
+    int size=10;
+    cout<<sumRecursion(arr,size);
+    
+    return 0;
+}
