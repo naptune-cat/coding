@@ -1,0 +1,58 @@
+
+void merger(vector < int > & arr, int s,int mid, int e){
+  
+
+    int len1 = mid-s+1;
+    int len2 = e-mid;
+
+    int *firstArr = new int[len1];
+    int *secondArr = new int[len2];
+
+    int mainArrIndex = s;
+    //copy main array into first and second array (half-half)
+    for(int i=0;i<len1;i++){
+        firstArr[i]=arr[mainArrIndex++];
+    }
+    for(int i=0;i<len2;i++){
+        secondArr[i]=arr[mainArrIndex++];
+    }
+    //logic similar to merge two sorted arrays
+    int index1=0,index2=0;
+    mainArrIndex=s;
+    while(index1 < len1 && index2 < len2){
+        if(firstArr[index1]<secondArr[index2]){
+            arr[mainArrIndex++]=firstArr[index1++];
+        }
+        else{
+            arr[mainArrIndex++]= secondArr[index2++];
+        }
+    }
+
+    while(index1 < len1){
+        arr[mainArrIndex++]=firstArr[index1++];
+    }
+    while (index2 < len2) {
+        arr[mainArrIndex++] = secondArr[index2++];
+    }
+    return;
+
+}
+
+void solve(vector < int > & arr, int s, int e){
+    //base case
+    if(s==e){
+        return;
+    }
+    int mid=s+(e-s)/2;
+    //sort left side from 0 index to mid index
+    solve(arr,s,mid);
+    //solve right side from mid+1 to end index
+    solve(arr,mid+1,e);
+    //merge both the left and right part
+    merger(arr,s,mid,e);
+    return;
+}
+void mergeSort(vector < int > & arr, int n) {
+    solve(arr,0,n-1);
+    return;
+}
