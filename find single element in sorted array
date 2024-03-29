@@ -1,0 +1,29 @@
+using binary search algo
+
+
+
+
+int singleNonDuplicate(vector<int>& arr)
+{
+	int mid;
+	int left=0;
+	int right=arr.size()-1;
+	while(left<right){
+		mid=left+(right-left)/2;
+		//make sure the mid is even
+		if(mid%2!=0){
+			mid--;
+		}
+  /**** 
+  if this is not true means the element is present at the left side of the array 
+  ****/
+		if(arr[mid]==arr[mid+1]){
+			left=mid+2;
+		}
+
+		else{
+			right=mid;
+		}
+	}
+	return arr[left];
+}
