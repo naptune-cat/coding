@@ -1,3 +1,4 @@
+//APPROACH 1 TC O(N^2)
 bool isPalindrome(LinkedListNode<int> *head) {
     
     vector<int> arr;
@@ -21,4 +22,57 @@ bool isPalindrome(LinkedListNode<int> *head) {
         }
     }
  return true;
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//APPROACH 2
+
+LinkedListNode<int>* findMid(LinkedListNode<int> *head){
+    LinkedListNode<int> *slow = head;
+    LinkedListNode<int> *fast = head->next;
+    while(fast!=NULL &&  fast->next!=NULL){
+            fast=fast->next->next;
+            slow=slow->next;
+    return slow;
+}
+
+LinkedListNode<int>* reverse(LinkedListNode<int> *head){
+    LinkedListNode<int> * forward =NULL;
+    LinkedListNode<int> * prev =NULL;
+    LinkedListNode<int> * curr =head;
+    while(curr!=NULL){
+        forward = curr->next;
+        curr ->next=prev;
+        prev=curr;
+        curr=forward;
+    }
+    return prev;
+}
+
+
+bool isPalindrome(LinkedListNode<int> *head) {
+    if(head==NULL || head->next==NULL){
+        return true;
+    }
+    
+    LinkedListNode<int> *middle=findMid(head);
+    LinkedListNode<int> *temp=middle->next;
+
+    //reverse LL after middle
+    middle->next=reverse(temp);
+
+    //check the data of both
+    LinkedListNode<int> *head1=head;
+    LinkedListNode<int> *head2=middle->next;
+    while(head2!=NULL){
+        if(head1->data!=head2->data){
+            return false;
+        }
+        else{
+            head1=head1->next;
+            head2=head2->next;
+        }
+    }
+    return true;
 }
