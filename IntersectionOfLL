@@ -1,0 +1,33 @@
+You are given two Singly Linked Lists of integers, which may have an intersection point.
+
+Your task is to return the first intersection node. If there is no intersection, return NULL.
+
+
+
+Example:-
+The Linked Lists, where a1, a2, c1, c2, c3 is the first linked list and b1, b2, b3, c1, c2, c3 is the second linked list, merging at node c1.
+
+#include <unordered_map>
+Node* findIntersection(Node *firstHead, Node *secondHead)
+{
+    unordered_map<Node*,int> present;
+    Node*temp = firstHead;
+    Node* temp2 = secondHead;
+
+    //add every element of first LL in the map
+    while(temp != NULL){
+        present[temp]=1;
+        temp=temp->next;
+    }
+
+    while(temp2!=NULL){ 
+        //why? != present.end()
+        //check if element already present in map
+        if(present.find(temp2)!= present.end()){
+            return temp2;
+        }
+        temp2=temp2->next;
+    }
+   return NULL;
+
+}
