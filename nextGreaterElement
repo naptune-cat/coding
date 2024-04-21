@@ -1,0 +1,23 @@
+
+#include<stack>
+vector<int> nextGreaterElement(vector<int>& arr, int n)
+{
+	vector<int> ans(n,-1);
+	stack<int> s;
+	//by default a stack is initialized with -1
+	
+	for(int i=n-1;i>=0;i--){
+		//a loop from end because the last element will not have any greater element in the right
+		int num = arr[i];
+		//pop the elements from the stack if it is equal or less than arr[i]
+		while(!s.empty() && s.top()<=num ){
+			s.pop();
+		}
+		//add element in ans vector as top of stack is largest num
+		if(!s.empty()){
+			ans[i]= s.top();
+		}
+		s.push(num);
+	}
+	return ans;
+}
